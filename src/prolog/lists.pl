@@ -9,3 +9,9 @@ get_list_length([_ | L], N) :-
 
 concat([], L, L).
 concat([X|R], L, [X|Q]):- concat(R, L, Q).
+
+double([], []).
+double([X|R], [X, X|Q]):- double(R, Q).
+
+reverse([], []).
+reverse([X|R], L) :- reverse(R, Q), concat(Q, [X], L).
