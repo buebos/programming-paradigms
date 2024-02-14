@@ -33,3 +33,17 @@ reverse([X|R], L) :- reverse(R, Q), concat(Q, [X], L).
 
 sum([], 0).
 sum([X|R], S) :- sum(R, SUM), S is SUM + X.
+
+duplicate([], []).
+duplicate([X|R], [X,X|Q]) :- duplicate(R, Q).
+
+% Reverses and then duplicates the list
+revdup(INPUT, RESULT) :- reverse(INPUT, REVERSED), duplicate(REVERSED, RESULT).
+
+filter(_, [], []).
+filter(X, [X|R], Q) :- filter(X, R, Q).
+filter(X, [Y|R], [Y|Q]) :- filter(X, R, Q).
+
+split_evens([], [], []).
+split_evens([X|R], [X|EVENS], ODDS) :- 0 is X mod 2, split_evens(R, EVENS, ODDS).
+split_evens([X|R], EVENS, [X|ODDS]) :- split_evens(R, EVENS, ODDS).
